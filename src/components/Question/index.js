@@ -97,8 +97,8 @@ class Question extends Component {
   }
 
   handleRemove = () => {
-    const { remove, questions_field } = this.props;
-    remove(questions_field.name);
+    const { onRemove, question_key } = this.props;
+    onRemove(question_key);
   }
 }
 

@@ -56,6 +56,8 @@ class New extends Component {
             <Question
               {...item}
               key={index}
+              question_key={index}
+              onRemove={this.handleRemoveQuestion}
             />
           ))}
 
@@ -70,16 +72,23 @@ class New extends Component {
     );
   }
 
-  handleAddQuestion = (mode) => {
-    console.log(question_key)
+  handleRemoveQuestion = (e) => {
     const { questions } = this.state;
 
-    let tempArray = [...questions, {
+    questions.splice(e, 1);
+
+    this.setState({ questions })
+  }
+
+  handleAddQuestion = (mode) => {
+    let { questions } = this.state;
+
+    questions = [...questions, {
       name: `name-${question_key}`,
       mode,
     }];
 
-    this.setState({ questions: tempArray });
+    this.setState({ questions });
 
     question_key++;
   }
