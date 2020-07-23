@@ -14,7 +14,7 @@ const NewStyled = styled.div`
 const QuestionStyled = styled.div`
   background: #fff;
   padding: 20px;
-  margin: 10px;
+  margin: 10px auto;
   border-radius: 4px;
   box-shadow: 0px 2px 4px rgba(0,0,0, .3);
 `;
@@ -61,7 +61,15 @@ class New extends Component {
             />
           ))}
 
-          <Button onClick={() => this.handleAddQuestion(0)}>ADD</Button>
+          <Form.Item>
+
+            <Button
+              type="dashed"
+              style={{width: '100%'}}
+              onClick={this.handleAddQuestion}
+            >ADD</Button>
+          </Form.Item>
+
           <Button
             htmlType='submit'
             type='primary'
@@ -80,12 +88,11 @@ class New extends Component {
     this.setState({ questions })
   }
 
-  handleAddQuestion = (mode) => {
+  handleAddQuestion = () => {
     let { questions } = this.state;
 
     questions = [...questions, {
-      name: `name-${question_key}`,
-      mode,
+      name: `question-${question_key}`,
     }];
 
     this.setState({ questions });

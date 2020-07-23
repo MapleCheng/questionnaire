@@ -12,7 +12,7 @@ import ShortAnswer from './ShortAnswer';
 const QuestionStyled = styled.div`
   background: #fff;
   padding: 20px;
-  margin: 10px;
+  margin: 10px auto;
   border-radius: 4px;
   box-shadow: 0px 2px 4px rgba(0,0,0, .3);
 `;
