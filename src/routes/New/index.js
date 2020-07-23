@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import { Button, Form, Input } from 'antd';
+import { MinusCircleOutlined, PlusOutlined } from '@ant-design/icons';
+
+// custom
 import Question from '../../components/Question';
 
 // custom components
@@ -65,9 +68,9 @@ class New extends Component {
 
             <Button
               type="dashed"
-              style={{width: '100%'}}
+              style={{ width: '100%' }}
               onClick={this.handleAddQuestion}
-            >ADD</Button>
+            ><PlusOutlined /> 新增</Button>
           </Form.Item>
 
           <Button
