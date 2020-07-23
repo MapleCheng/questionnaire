@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import { Button, Form, Input } from 'antd';
+import { Button, Form, Input, Divider, Typography, Space, Row } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
 
 // custom
@@ -55,6 +55,10 @@ class New extends Component {
             </Form.Item>
           </QuestionStyled>
 
+          <Divider orientation='center'>
+            <Typography.Title level={4} style={{ margin: 0 }}>題目</Typography.Title>
+          </Divider>
+
           {questions.map((item, index) => (
             <Question
               {...item}
@@ -73,11 +77,20 @@ class New extends Component {
             ><PlusOutlined /> 新增</Button>
           </Form.Item>
 
-          <Button
-            htmlType='submit'
-            type='primary'
-            variant='contained'
-          >Submit</Button>
+          <Row justify='center'>
+            <Space>
+              <Button
+                type='default'
+                variant='contained'
+                onClick={this.handleCancel}
+              >取消</Button>
+              <Button
+                htmlType='submit'
+                type='primary'
+                variant='contained'
+              >送出</Button>
+            </Space>
+          </Row>
         </Form>
       </NewStyled>
     );
@@ -103,8 +116,13 @@ class New extends Component {
     question_key++;
   }
 
+  handleCancel = () => {
+
+  }
+
   handleSubmit = (e) => {
     console.log(e)
+
   }
 }
 
