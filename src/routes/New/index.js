@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { Button, Form, Input, Divider, Typography, Space, Row } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
 import { connect } from 'dva';
+import { withRouter } from 'dva/router';
 
 // custom components
 import Question from '../../components/Question';
@@ -30,6 +31,7 @@ const QuestionStyled = styled.div`
 // question key
 let question_key = 0;
 
+@withRouter
 @connect()
 class New extends Component {
 
@@ -50,7 +52,7 @@ class New extends Component {
           <QuestionStyled>
             <Form.Item
               name="title"
-                rules={[{required: true, message: `請輸入標題`}]}
+              rules={[{ required: true, message: `請輸入標題` }]}
             >
               <Input
                 placeholder="問卷標題"
@@ -127,7 +129,9 @@ class New extends Component {
   }
 
   handleCancel = () => {
+    const { history } = this.props;
 
+    history.push('/');
   }
 
   handleSubmit = (e) => {
@@ -135,8 +139,12 @@ class New extends Component {
     const { questions } = this.state;
 
     const output = dataConsolidation(e, questions);
-    
-    addQuestions(dispatch, output)
+
+    addQuestions(dispatch, output);
+
+    const { history } = this.props;
+
+    history.push('/');
   }
 }
 
