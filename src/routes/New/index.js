@@ -2,13 +2,17 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import { Button, Form, Input, Divider, Typography, Space, Row } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
-
-// custom
-import Question from '../../components/Question';
-import dataConsolidation from '../../utils/dataConsolidation';
+import { connect } from 'dva';
 
 // custom components
+import Question from '../../components/Question';
+import { addQuestions } from '../../models/questionnaire';
 
+// funcations
+import dataConsolidation from '../../utils/dataConsolidation';
+
+
+// styled
 const NewStyled = styled.div`
   max-width: 768px;
   width: 100%;
@@ -23,8 +27,10 @@ const QuestionStyled = styled.div`
   box-shadow: 0px 2px 4px rgba(0,0,0, .3);
 `;
 
+// question key
 let question_key = 0;
 
+@connect()
 class New extends Component {
 
   state = {
@@ -125,10 +131,12 @@ class New extends Component {
   }
 
   handleSubmit = (e) => {
+    const { dispatch } = this.props;
     const { questions } = this.state;
 
     const output = dataConsolidation(e, questions);
-    console.log(output)
+    
+    addQuestions(dispatch, output)
   }
 }
 
