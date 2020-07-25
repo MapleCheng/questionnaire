@@ -42,7 +42,10 @@ class New extends Component {
       <NewStyled>
         <Form onFinish={this.handleSubmit}>
           <QuestionStyled>
-            <Form.Item name="title">
+            <Form.Item
+              name="title"
+                rules={[{required: true, message: `請輸入標題`}]}
+            >
               <Input
                 placeholder="問卷標題"
                 autoComplete='off'

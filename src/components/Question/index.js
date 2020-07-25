@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 import { Input, Select, Row, Form, Col, Button, Modal } from 'antd';
 import { DeleteOutlined } from '@ant-design/icons';
 
@@ -31,6 +32,14 @@ const FooterStyled = styled.div`
 class Question extends Component {
 
   state = {
+    mode: this.props.mode
+  }
+
+  static propTypes = {
+    mode: PropTypes.number
+  }
+
+  static defaultProps = {
     mode: 0
   }
   render() {
