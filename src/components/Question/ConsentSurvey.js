@@ -7,7 +7,7 @@ class ConsentSurvey extends Component {
     const { name } = this.props;
     return (
       <div>
-        <Form.List name={`${name}consent_survey`}>
+        <Form.List name={`${name}/consent_survey`}>
           {(fields, { add, remove }) => {
             if (fields.length === 0) {
               fields = [{

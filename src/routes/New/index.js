@@ -5,6 +5,7 @@ import { PlusOutlined } from '@ant-design/icons';
 
 // custom
 import Question from '../../components/Question';
+import dataConsolidation from '../../utils/dataConsolidation';
 
 // custom components
 
@@ -41,13 +42,13 @@ class New extends Component {
       <NewStyled>
         <Form onFinish={this.handleSubmit}>
           <QuestionStyled>
-            <Form.Item name="questionnaire_title">
+            <Form.Item name="title">
               <Input
                 placeholder="問卷標題"
                 autoComplete='off'
               />
             </Form.Item>
-            <Form.Item name="questionnaire_description">
+            <Form.Item name="description">
               <Input.TextArea
                 placeholder="問卷描述"
                 autoComplete='off'
@@ -121,8 +122,10 @@ class New extends Component {
   }
 
   handleSubmit = (e) => {
-    console.log(e)
+    const { questions } = this.state;
 
+    const output = dataConsolidation(e, questions);
+    console.log(output)
   }
 }
 

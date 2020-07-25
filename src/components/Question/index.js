@@ -44,6 +44,7 @@ class Question extends Component {
               <Form.Item
                 name={`${name}/question`}
                 style={{ flex: 1 }}
+                rules={[{required: true, message: `請輸入${mode !== 0 ? "問題" : "標題"}`}]}
               >
                 <Input
                   placeholder={mode !== 0 ? "問題" : "標題"}
