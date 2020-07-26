@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Form, Input, Button, Row, Col, Checkbox, Radio } from 'antd';
-import { MinusCircleOutlined, PlusOutlined } from '@ant-design/icons';
+import { Form, Input, Row, Col, Checkbox, Radio } from 'antd';
+import { MinusCircleOutlined } from '@ant-design/icons';
 
 class Choice extends Component {
 

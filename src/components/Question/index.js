@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import { Input, Select, Row, Form, Col, Button, Modal } from 'antd';
+import { Input, Select, Row, Form, Col, Button } from 'antd';
 import { DeleteOutlined } from '@ant-design/icons';
 
 // custom components

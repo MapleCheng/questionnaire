@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Button, Row } from 'antd';
 import styled from 'styled-components';
-import { Link, withRouter } from 'dva/router';
+import { withRouter } from 'dva/router';
 
 // assets
 import homeSVG from '../../assets/home.svg';

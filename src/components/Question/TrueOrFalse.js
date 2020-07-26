@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Form, Button, Row, Col } from 'antd';
+import { Button, Row, Col } from 'antd';
 
 class TrueOrFalse extends Component {
   render() {

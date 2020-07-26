@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import styled from 'styled-components';
-import PropTypes from 'prop-types';
-import { Input, Select, Row, Form, Col, Button, Modal, Typography } from 'antd';
+import { Typography } from 'antd';
 
 // custom components
 import ConsentSurvey from './ConsentSurvey';

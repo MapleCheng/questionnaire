@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Form, Input, Button, Row, Col } from 'antd';
-import { MinusCircleOutlined, PlusOutlined } from '@ant-design/icons';
+import { Form, Input, Row, Col } from 'antd';
+import { MinusCircleOutlined } from '@ant-design/icons';
 
 class ConsentSurvey extends Component {
   render() {
