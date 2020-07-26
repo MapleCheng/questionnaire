@@ -28,6 +28,11 @@ const Label = styled.label`
       background: #1890ff;
       border-color: #1890ff;
       box-shadow: 0 0 0 3px rgba(24, 144, 255, 0.08);
+
+      &:hover {
+        color: #fff;
+        background: #40a9ff;
+      }
     }
 
     &:hover {
