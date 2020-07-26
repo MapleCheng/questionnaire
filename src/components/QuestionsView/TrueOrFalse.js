@@ -11,10 +11,10 @@ class TrueOrFalse extends Component {
         <Radio.Group style={{width: '100%'}}>
           <Row justify='space-between'>
             <Col span={11}>
-              <Radio.Button value={0} style={{width: '100%', textAlign: 'center'}} ><CheckCircleOutlined /></Radio.Button>
+              <Radio.Button value={true} style={{width: '100%', textAlign: 'center'}} ><CheckCircleOutlined /></Radio.Button>
             </Col>
             <Col span={11}>
-              <Radio.Button value={1} style={{width: '100%', textAlign: 'center'}} ><CloseCircleOutlined /></Radio.Button>
+              <Radio.Button value={false} style={{width: '100%', textAlign: 'center'}} ><CloseCircleOutlined /></Radio.Button>
             </Col>
           </Row>
         </Radio.Group>
