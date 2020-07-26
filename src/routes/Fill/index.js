@@ -6,6 +6,7 @@ import { getQuestions } from '../../models/questionnaire';
 
 // custom components
 import QuestionsView from '../../components/QuestionsView';
+import { withRouter } from 'dva/router';
 
 const FillStyled = styled.div`
   max-width: 768px;
@@ -21,6 +22,7 @@ const QuestionStyled = styled.div`
   box-shadow: 0px 2px 4px rgba(0,0,0, .3);
 `;
 
+@withRouter
 @connect(
   state => ({
     questions: state.questionnaire.questions
@@ -64,10 +66,29 @@ class Read extends Component {
             ))
           }
 
-          <Button htmlType='submit'>submit</Button>
+          <Row justify='center' style={{marginBottom: '2rem'}}>
+            <Space>
+              <Button
+                type='default'
+                variant='contained'
+                onClick={this.handleCancel}
+              >取消</Button>
+              <Button
+                htmlType='submit'
+                type='primary'
+                variant='contained'
+              >送出</Button>
+            </Space>
+          </Row>
         </Form>
       </FillStyled>
     );
+  }
+
+  handleCancel = () => {
+    const { history } = this.props;
+
+    history.push('/');
   }
 
   handleFinish = (e) => {
