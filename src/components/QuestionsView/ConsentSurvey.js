@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Form, Radio, Rate } from 'antd';
+import { Form, Rate } from 'antd';
 
 // styles
 import styles from './styles.less';
