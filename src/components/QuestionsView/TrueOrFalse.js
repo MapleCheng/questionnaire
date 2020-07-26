@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class Read extends Component {
+class TrueOrFalse extends Component {
   render() {
     return (
       <div>
@@ -10,4 +10,4 @@ class Read extends Component {
   }
 }
 
-export default Read;
+export default TrueOrFalse;
