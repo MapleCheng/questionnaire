@@ -8,13 +8,20 @@ class TrueOrFalse extends Component {
     const { name } = this.props;
     return (
       <Form.Item name={`${name}/TrueOrFalse`}>
-        <Radio.Group style={{width: '100%'}}>
+        <Radio.Group style={{ width: '100%' }} buttonStyle="solid">
           <Row justify='space-between'>
             <Col span={11}>
-              <Radio.Button value={true} style={{width: '100%', textAlign: 'center'}} ><CheckCircleOutlined /></Radio.Button>
+              <Radio.Button
+                value={true}
+                style={{ width: '100%', textAlign: 'center' }}
+              ><CheckCircleOutlined /></Radio.Button>
             </Col>
             <Col span={11}>
-              <Radio.Button value={false} style={{width: '100%', textAlign: 'center'}} ><CloseCircleOutlined /></Radio.Button>
+              <Radio.Button
+                value={false}
+                style={{ width: '100%', textAlign: 'center' }}
+              ><CloseCircleOutlined />
+              </Radio.Button>
             </Col>
           </Row>
         </Radio.Group>
