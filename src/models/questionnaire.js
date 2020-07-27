@@ -7,44 +7,57 @@ export const getQuestions = (dispatch, payload) => (
   dispatch({ type: 'questionnaire/getQuestions', payload })
 )
 
+export const fillQuestions = (dispatch, payload) => (
+  dispatch({ type: 'questionnaire/fillQuestions', payload })
+)
+
 export default {
 
   namespace: 'questionnaire',
 
   state: {
-    questions: {
+    questionnaire: {
       title: '',
       description: '',
       questions: []
-    }
-  },
-
-  subscriptions: {
-    setup({ dispatch, history }) {  // eslint-disable-line
+    },
+    answer: {
     },
   },
 
   effects: {
-    *addQuestions({ payload }, { call, put }) {  // eslint-disable-line
+    *addQuestions({ payload }, { call, put }) {
 
-      console.log(payload)
-      yield put({ type: 'setQuestion', payload });
+      yield put({ type: 'setQuestionnaire', payload });
     },
 
     *getQuestions({ payload }, { call, put }) {
       const res = JSON.parse('{ "title": "dfsdfdfs", "description": "dsfdfsdfsdfs", "questions": [{ "question": "dfsdfsdfs", "mode": 0, "consent_survey": ["dfsdfsdfs", "dfsdfs"] }, { "question": "dfsdfs", "mode": 1, "choice": ["dfsdfs"] }, { "question": "dfsdfsdfs", "mode": 2, "choice": ["dfsdfsdfs"] }, { "question": "ffff", "mode": 3 }, { "question": "aaaaa", "mode": 4 }] }')
 
-      yield put({ type: 'setQuestion', payload: res });
-    }
+      yield put({ type: 'setQuestionnaire', payload: res });
+    },
+
+    *fillQuestions({ payload }, { call, put }) {
+
+      yield put({ type: 'finishQuestionnaire', payload })
+    },
   },
 
   reducers: {
-    setQuestion(state, action) {
+    setQuestionnaire(state, action) {
       return {
         ...state,
-        questions: action.payload
+        questionnaire: action.payload
       };
     },
   },
+
+  finishedQuestionnaire(state, action) {
+    return {
+      ...state,
+      answer: action.payload
+    };
+
+  }
 
 };

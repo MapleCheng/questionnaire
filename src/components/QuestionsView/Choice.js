@@ -57,8 +57,6 @@ class Choice extends Component {
 
     const { choice, name, mode } = this.props;
 
-    console.log(this.props);
-
     if (mode === 1) {
       return (
         <Form.Item name={`${name}/choice`}>

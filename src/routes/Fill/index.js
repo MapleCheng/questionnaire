@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'dva';
 import styled from 'styled-components';
 import { Button, Form, Card, Divider, Typography, Space, Row, Alert } from 'antd';
-import { getQuestions } from '../../models/questionnaire';
+import { getQuestions, fillQuestions } from '../../models/questionnaire';
 
 // custom components
 import QuestionsView from '../../components/QuestionsView';
@@ -27,7 +27,7 @@ const QuestionStyled = styled.div`
 @withRouter
 @connect(
   state => ({
-    questions: state.questionnaire.questions
+    questionnaire: state.questionnaire.questionnaire
   })
 )
 class Read extends Component {
@@ -43,17 +43,15 @@ class Read extends Component {
 
   render() {
 
-    const { questions } = this.props;
+    const { questionnaire } = this.props;
     const { err } = this.state;
-
-    console.log(questions)
 
     return (
       <FillStyled>
         <QuestionStyled>
           <Card.Meta
-            title={questions.title}
-            description={questions.description}
+            title={questionnaire.title}
+            description={questionnaire.description}
           />
         </QuestionStyled>
 
@@ -63,7 +61,7 @@ class Read extends Component {
 
         <Form onFinish={this.handleFinish}>
           {
-            questions.questions.map((item, key) => (
+            questionnaire.questions.map((item, key) => (
               <QuestionStyled key={key}>
                 <QuestionsView
                   {...item}
@@ -106,16 +104,22 @@ class Read extends Component {
   }
 
   handleFinish = (e) => {
-    console.log(e);
 
-    const err = errorMessage.questionnaire(e, this.props.questions.questions) || {};
+    const { dispatch, questionnaire } = this.props;
+    const { title, description, questions } = questionnaire;
+
+    const err = errorMessage.questionnaire(e, questions) || {};
 
     this.setState({ err });
 
     if (Object.keys(err).length === 0) {
-      const payload = dataConsolidation.fillQuestionnaire(e, this.props.questions.questions);
+      const answer = dataConsolidation.fillQuestionnaire(e, questions);
 
-      console.log(payload);
+      fillQuestions(dispatch, {
+        title,
+        description,
+        answer,
+      })
     }
   }
 }
