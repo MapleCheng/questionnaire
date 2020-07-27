@@ -5,7 +5,7 @@ class ShortAnswer extends Component {
   render() {
     const { name } = this.props;
     return (
-      <Form.Item name={`${name}/short`}>
+      <Form.Item name={`${name}/short`} initialValue="">
         <Input.TextArea
           autoComplete='off'
         />

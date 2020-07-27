@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'dva';
 import styled from 'styled-components';
-import { Button, Form, Card, Divider, Typography, Space, Row } from 'antd';
+import { Button, Form, Card, Divider, Typography, Space, Row, Alert } from 'antd';
 import { getQuestions } from '../../models/questionnaire';
 
 // custom components
 import QuestionsView from '../../components/QuestionsView';
 import { withRouter } from 'dva/router';
 import dataConsolidation from '../../utils/dataConsolidation';
+import errorMessage from '../../utils/errorMessage';
 
 const FillStyled = styled.div`
   max-width: 768px;
@@ -31,6 +32,10 @@ const QuestionStyled = styled.div`
 )
 class Read extends Component {
 
+  state = {
+    err: {}
+  }
+
   componentDidMount() {
     const { dispatch } = this.props;
     getQuestions(dispatch);
@@ -39,6 +44,7 @@ class Read extends Component {
   render() {
 
     const { questions } = this.props;
+    const { err } = this.state;
 
     console.log(questions)
 
@@ -63,11 +69,18 @@ class Read extends Component {
                   {...item}
                   name={`question-${key}`}
                 />
+
+                {err[`question-${key}`] &&
+                  <Alert
+                    message={err[`question-${key}`]}
+                    type="error"
+                  />
+                }
               </QuestionStyled>
             ))
           }
 
-          <Row justify='center' style={{marginBottom: '2rem'}}>
+          <Row justify='center' style={{ marginBottom: '2rem' }}>
             <Space>
               <Button
                 type='default'
@@ -93,11 +106,17 @@ class Read extends Component {
   }
 
   handleFinish = (e) => {
-    console.log(e)
+    console.log(e);
 
-    const payload = dataConsolidation.fillQuestionnaire(e, this.props.questions.questions);
+    const err = errorMessage.questionnaire(e, this.props.questions.questions) || {};
 
-    console.log(payload)
+    this.setState({ err });
+
+    if (Object.keys(err).length === 0) {
+      const payload = dataConsolidation.fillQuestionnaire(e, this.props.questions.questions);
+
+      console.log(payload);
+    }
   }
 }
 
