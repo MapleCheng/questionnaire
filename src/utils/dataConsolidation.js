@@ -3,7 +3,7 @@
 
 export default {
   // 新增問卷合併data
-  newQuestion: (data, r) => {
+  newQuestionnaire: (data, r) => {
 
     const questions = r.map((item, key) => {
 
@@ -43,5 +43,41 @@ export default {
       description: data.description,
       questions,
     }
+  },
+
+  fillQuestionnaire: (data, r) => {
+
+    const results = r.map((item, index) => {
+
+      let result = {};
+
+      const name = `question-${index}`;
+
+      const mode = item.mode;
+
+      if (mode === 0 && data[`${name}/consent_survey`]) {
+
+        result.answer = [];
+
+        console.log(data)
+
+        data[`${name}/consent_survey`].forEach(element => {
+
+          if (element) {
+            result.answer.push(element);
+          }
+        });
+      } else if (mode === 1 || mode === 2) {
+        result.answer = data[`${name}/choice`];
+      } else if (mode === 3) {
+        result.answer = data[`${name}/TrueOrFalse`];
+      } else if (mode === 4) {
+        result.answer = data[`${name}/short`]
+      }
+
+      return result;
+    });
+
+    return results;
   }
 }

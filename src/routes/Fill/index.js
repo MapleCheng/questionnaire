@@ -7,6 +7,7 @@ import { getQuestions } from '../../models/questionnaire';
 // custom components
 import QuestionsView from '../../components/QuestionsView';
 import { withRouter } from 'dva/router';
+import dataConsolidation from '../../utils/dataConsolidation';
 
 const FillStyled = styled.div`
   max-width: 768px;
@@ -93,6 +94,10 @@ class Read extends Component {
 
   handleFinish = (e) => {
     console.log(e)
+
+    const payload = dataConsolidation.fillQuestionnaire(e, this.props.questions.questions);
+
+    console.log(payload)
   }
 }
 
